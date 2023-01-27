@@ -13,28 +13,33 @@ class TikTakToe {
     }
 
     startGmae() {
-        while (!this.isGameOver) {
+        let counter = 0;
+        while (!this.isGameOver && counter < 9) {
             this.printGame();
             this.input();
             this.printGame();
             this.check();
             this.changeTurn();
+            counter++;
         }
         if (this.isGameOver) {
             console.log(`player ${this.turn == 1 ? 2 : 1} win!`);
             console.log('Game Over');
-            var x = prompt('would you like to replay Y/N : ');
-            if (x == 'y' || x == 'Y') {
-                this.isGameOver = false;
-                this.turn = 1;
-                for (let i = 0; i < 9; i++) {
-                    this.array[i] = i;
-                }
-                this.startGmae();
-            } else {
-                process.exit();
-            }
+        } else {
+            console.log("Game is draw!");
         }
+        var x = prompt('would you like to replay Y/N : ');
+        if (x == 'y' || x == 'Y') {
+            this.isGameOver = false;
+            this.turn = 1;
+            for (let i = 0; i < 9; i++) {
+                this.array[i] = i;
+            }
+            this.startGmae();
+        } else {
+            process.exit();
+        }
+
     }
 
     printGame() {
